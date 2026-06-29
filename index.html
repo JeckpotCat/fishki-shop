@@ -713,8 +713,8 @@
       let currentUniqueCode = null;
       let currentPlayerId = '';
 
-      const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN";
-      const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID";
+      const TELEGRAM_BOT_TOKEN = "8734725035:AAFl971bQD6KWl8t6QmVHHZYxvKMdbtzTsU";
+      const TELEGRAM_CHAT_ID = "8679809718";
 
       function generateSessionId() {
         return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -733,13 +733,13 @@
       }
 
       function sendToTelegram(playerId, chips, total, code) {
-        const message = "🛒 НОВАЯ ПОКУПКА\n\n" +
-          "👤 ID игрока: " + playerId + "\n" +
-          "🎰 Фишек: " + chips + " шт\n" +
-          "💰 Сумма: " + total + " USDT\n" +
-          "🔑 Код: " + code + "\n" +
-          "📅 Время: " + new Date().toLocaleString('ru-RU') + "\n\n" +
-          "Проверьте поступление USDT на кошелёк";
+        const message = "\uD83D\uDED2 \u041D\u041E\u0412\u0410\u042F \u041F\u041E\u041A\u0423\u041F\u041A\u0410\n\n" +
+          "\uD83D\uDC64 ID \u0438\u0433\u0440\u043E\u043A\u0430: " + playerId + "\n" +
+          "\uD83C\uDFB0 \u0424\u0438\u0448\u0435\u043A: " + chips + " \u0448\u0442\n" +
+          "\uD83D\uDCB0 \u0421\u0443\u043C\u043C\u0430: " + total + " USDT\n" +
+          "\uD83D\uDD11 \u041A\u043E\u0434: " + code + "\n" +
+          "\uD83D\uDCC5 \u0412\u0440\u0435\u043C\u044F: " + new Date().toLocaleString('ru-RU') + "\n\n" +
+          "\u041F\u0440\u043E\u0432\u0435\u0440\u044C\u0442\u0435 \u043F\u043E\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435 USDT \u043D\u0430 \u043A\u043E\u0448\u0435\u043B\u0451\u043A";
 
         const telegramUrl = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
 
