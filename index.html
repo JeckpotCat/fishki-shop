@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
   <title>Купить фишки | TRON USDT</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:;">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
   </script>
   <style>
@@ -11,10 +12,14 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     body {
-      background: radial-gradient(circle at 20% 20%, #2d0000, #0a0000 80%);
+      background: #0a0000;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -22,265 +27,275 @@
       font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
       padding: 20px;
       margin: 0;
-      color: #ffe6e6;
+      color: #d4a0a0;
     }
 
-    /* Карточка в красно-чёрных тонах */
     .card {
-      background: rgba(15, 2, 2, 0.9);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 2px solid #8b0000;
-      border-radius: 2.8rem;
-      padding: 2.5rem 2rem;
-      max-width: 550px;
+      background: #0f0202;
+      border: 1px solid #2a0a0a;
+      border-radius: 1.5rem;
+      padding: 2rem 1.8rem;
+      max-width: 480px;
       width: 100%;
-      box-shadow: 0 0 45px rgba(220, 20, 20, 0.5), inset 0 0 25px rgba(180, 0, 0, 0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       text-align: center;
-      transition: all 0.2s ease;
       position: relative;
     }
 
-    /* Декоративные масти по бокам */
-    .card::before {
-      content: "♦";
-      font-size: 5rem;
-      color: #ff1a1a;
-      position: absolute;
-      left: -20px;
-      top: 20px;
-      opacity: 0.45;
-      text-shadow: 0 0 18px #ff0000;
-      transform: rotate(-10deg);
-      pointer-events: none;
-    }
-
-    .card::after {
-      content: "♥";
-      font-size: 5rem;
-      color: #ff1a1a;
-      position: absolute;
-      right: -20px;
-      bottom: 25px;
-      opacity: 0.45;
-      text-shadow: 0 0 18px #ff0000;
-      transform: rotate(10deg);
-      pointer-events: none;
-    }
-
     h1 {
-      font-size: 2.6rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      background: linear-gradient(to right, #ff4444, #cc0000);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.3rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ff4444;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      text-shadow: 0 0 12px #990000;
+      gap: 0.4rem;
     }
 
-    h1 .chip-icon {
-      font-size: 2.4rem;
-      filter: drop-shadow(0 0 12px #ff5555);
-      background: radial-gradient(circle at 30% 30%, #e60000, #4d0000);
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 55px;
-      height: 55px;
-      border: 3px dashed #ffb3b3;
-      color: #fff0f0;
+    h1 span {
+      font-size: 1.5rem;
     }
 
     .subtitle {
-      color: #ffaaaa;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      font-weight: 500;
-      border-bottom: 2px dashed #7a0000;
-      padding-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.3rem;
+      color: #994444;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      border-bottom: 1px solid #1a0505;
+      padding-bottom: 0.8rem;
     }
 
     .network-badge {
-      background: #1a0000;
-      color: #ff6b6b;
-      font-weight: 700;
-      padding: 0.3rem 1.2rem;
-      border-radius: 3rem;
-      margin: 0.6rem auto 1.4rem;
+      background: #140202;
+      color: #cc6666;
+      font-weight: 600;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      margin: 0.6rem auto 1.2rem;
       display: inline-block;
-      border: 1px solid #cc0000;
-      letter-spacing: 0.5px;
-      font-size: 0.9rem;
-      box-shadow: 0 0 15px #e60000;
+      border: 1px solid #2a0808;
+      letter-spacing: 0.3px;
+      font-size: 0.8rem;
       text-transform: uppercase;
     }
 
-    .network-badge i {
-      font-style: normal;
-      margin-right: 4px;
-    }
-
     .amount-selector {
-      background: #1a0101;
-      border-radius: 2.5rem;
-      padding: 1.5rem 1.8rem;
-      margin: 1.8rem 0 2rem;
-      border: 2px solid #b30000;
-      box-shadow: inset 0 4px 20px rgba(180, 0, 0, 0.7), 0 0 18px #660000;
+      background: #0a0101;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.2rem 0 1.5rem;
+      border: 1px solid #1a0505;
     }
 
     .range-label {
       display: flex;
       justify-content: space-between;
-      font-weight: 700;
-      color: #ffcccc;
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
+      font-weight: 600;
+      color: #994444;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
     }
 
-    /* Сам ползунок в виде фишки: используем кастомный стиль */
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     input[type="range"] {
-      width: 100%;
-      height: 12px;
+      flex: 1;
+      height: 4px;
       -webkit-appearance: none;
-      background: linear-gradient(to right, #660000, #e60000);
-      border-radius: 12px;
+      appearance: none;
+      background: #1a0505;
+      border-radius: 4px;
       outline: none;
-      margin: 0.8rem 0 1.8rem;
-      box-shadow: 0 0 20px #ff3333;
+      cursor: pointer;
     }
 
-    /* Кругляшка ползунка — стилизована под покерную фишку */
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 38px;
-      height: 38px;
-      background: radial-gradient(circle at 30% 30%, #ff4d4d, #8b0000);
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #cc3333;
       border-radius: 50%;
-      box-shadow: 0 0 30px #ff1a1a, 0 0 8px black, inset 0 -3px 0 rgba(0,0,0,0.6);
-      border: 3px dashed #ffb3b3;
       cursor: pointer;
-      transition: 0.1s;
-      background-image: radial-gradient(circle at 35% 35%, #ff9999 5%, #b30000 70%);
-      position: relative;
+      box-shadow: 0 0 0 4px rgba(204,51,51,0.15);
+      transition: all 0.15s ease;
     }
 
-    /* Для Firefox тоже фишка */
+    input[type="range"]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 8px rgba(204,51,51,0.2);
+    }
+
     input[type="range"]::-moz-range-thumb {
-      width: 38px;
-      height: 38px;
-      background: radial-gradient(circle at 30% 30%, #ff4d4d, #8b0000);
+      width: 20px;
+      height: 20px;
+      background: #cc3333;
       border-radius: 50%;
-      border: 3px dashed #ffb3b3;
-      box-shadow: 0 0 30px #ff1a1a;
+      border: none;
       cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(204,51,51,0.15);
     }
 
-    .chips-number {
-      font-size: 2.8rem;
-      font-weight: 900;
-      background: #300000;
-      display: inline-block;
-      padding: 0.3rem 2.2rem;
-      border-radius: 4rem;
-      margin: 0.4rem 0 1rem;
-      color: #ffd700;
-      box-shadow: 0 0 35px #cc0000, inset 0 0 10px #660000;
-      letter-spacing: 2px;
-      border: 1px solid #ff5555;
+    .chips-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff5555;
+      min-width: 50px;
+      text-align: center;
+      background: #140202;
+      border-radius: 0.6rem;
+      padding: 0.3rem 0.6rem;
     }
 
     .price-box {
-      background: #0a0000;
-      border-radius: 2rem;
-      padding: 1.2rem;
-      margin: 1.2rem 0 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      border: 2px solid #cc0000;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #ffb347;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #cc8888;
     }
 
     .usdt-badge {
-      background: #009393;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: white;
-      box-shadow: 0 0 18px #00cccc;
-      background: radial-gradient(circle at 30% 30%, #26a69a, #00695c);
-      border: 2px solid #b2dfdb;
+      background: #1a0a0a;
+      color: #cc5555;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .btn {
       border: none;
-      color: white;
-      font-weight: bold;
-      font-size: 1.25rem;
-      padding: 1rem 2.2rem;
-      border-radius: 3rem;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 2rem;
+      border-radius: 0.8rem;
       width: 100%;
       cursor: pointer;
-      background: linear-gradient(135deg, #b71c1c, #7f0000);
-      box-shadow: 0 10px 20px -8px #b71c1c, 0 0 0 2px #ff8a80;
-      transition: all 0.25s;
-      letter-spacing: 0.8px;
-      margin: 1.5rem 0 0.8rem;
+      background: #cc3333;
+      color: #ffffff;
+      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
+      margin: 1rem 0 0.5rem;
       text-transform: uppercase;
     }
 
     .btn:hover {
-      background: linear-gradient(135deg, #d32f2f, #9a0000);
-      box-shadow: 0 15px 25px -6px #d50000, 0 0 18px #ff5252;
-      transform: scale(1.02);
+      background: #aa2222;
+      transform: translateY(-1px);
     }
 
     .btn:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      background: #2a0a0a !important;
+      color: #663333 !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: #140202;
+      color: #cc6666;
+      border: 1px solid #2a0808;
+    }
+
+    .btn-secondary:hover {
+      background: #1a0505;
+    }
+
+    .btn-success {
+      background: #1a0a0a;
+      color: #cc5555;
+      border: 1px solid #2a0f0f;
+    }
+
+    .btn-success:hover {
+      background: #1f0d0d;
+    }
+
+    .btn-wallet {
+      background: #1a0808;
+      color: #dd7777;
+      border: 1px solid #3a1010;
+      font-size: 0.85rem;
+      padding: 0.7rem 1rem;
+      margin: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-wallet:hover {
+      background: #220c0c;
+      color: #ff9999;
     }
 
     .payment-section {
-      margin-top: 2rem;
-      background: #1f0303;
-      border-radius: 2rem;
-      padding: 1.8rem 1rem;
-      border: 2px solid #b71c1c;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 30px #660000;
+      margin-top: 1.5rem;
+      background: #0a0101;
+      border-radius: 1.2rem;
+      padding: 1.5rem 1rem;
+      border: 1px solid #1a0505;
     }
 
     .hidden {
       display: none;
     }
 
-    .qr-container {
-      background: white;
+    .qr-wrapper {
+      position: relative;
       display: inline-block;
-      padding: 14px;
-      border-radius: 1.8rem;
-      margin: 1.2rem auto;
-      box-shadow: 0 0 30px #ff3333;
-      border: 2px solid #ff5555;
+      cursor: pointer;
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 1rem;
+      margin: 1rem auto;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .qr-wrapper:hover {
+      border: 2px solid #cc4444;
+      box-shadow: 0 0 25px rgba(204,68,68,0.25);
+      transform: scale(1.02);
+    }
+
+    .qr-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,0,0,0.75);
+      border-radius: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ffaaaa;
+      z-index: 5;
+    }
+
+    .qr-wrapper:hover .qr-overlay {
+      opacity: 1;
     }
 
     #qrcode {
@@ -290,162 +305,274 @@
     }
 
     .wallet-link {
-      background: #1f0101;
-      padding: 0.9rem;
-      border-radius: 2rem;
+      background: #0f0202;
+      padding: 0.7rem;
+      border-radius: 0.6rem;
       word-break: break-all;
-      color: #ffaaaa;
+      color: #994444;
       font-family: monospace;
-      font-size: 0.85rem;
-      margin: 1rem 0;
-      border: 1px dashed #ff4d4d;
+      font-size: 0.75rem;
+      margin: 0.8rem 0;
+      border: 1px solid #1a0505;
     }
 
     .copy-btn {
       background: none;
-      border: 2px solid #cc0000;
-      color: #ffb3b3;
-      padding: 0.5rem 1.4rem;
-      border-radius: 2rem;
-      font-size: 0.85rem;
-      margin: 0.3rem 0 1rem;
+      border: 1px solid #2a0808;
+      color: #aa5555;
+      padding: 0.4rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
       cursor: pointer;
       transition: 0.2s;
-      font-weight: bold;
+      font-weight: 500;
     }
 
     .copy-btn:hover {
-      background: #4a0000;
+      background: #140202;
+      color: #ff7777;
+    }
+
+    .wallets-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .wallets-title {
+      font-size: 0.75rem;
+      color: #774444;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .success-message {
-      background: #1a3a2b;
-      color: #c6ffc6;
+      background: #0d0505;
+      color: #cc5555;
       padding: 1.2rem;
-      border-radius: 2rem;
-      margin-top: 1.5rem;
-      font-weight: 700;
-      font-size: 1.3rem;
-      border: 2px solid #34d399;
-      animation: fadeSlide 0.5s ease;
-      background: linear-gradient(145deg, #0d2818, #0a1f12);
+      border-radius: 1rem;
+      margin-top: 1.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 1px solid #2a0f0f;
+      animation: fadeSlide 0.4s ease;
     }
 
     @keyframes fadeSlide {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .goodluck {
-      margin-top: 1.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #ffb3b3;
-      background: rgba(139, 0, 0, 0.4);
-      padding: 0.6rem 1rem;
-      border-radius: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.3rem;
-      border: 1px solid #d50000;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #663333;
     }
 
     .fee-note {
-      font-size: 0.8rem;
-      color: #cc8888;
-      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      color: #552222;
+      margin-top: 0.3rem;
+    }
+
+    .warning-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5,0,0,0.97);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      color: #cc3333;
+      font-size: 1.3rem;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .warning-overlay.active {
+      display: flex;
     }
   </style>
 </head>
 <body>
+
+  <div class="warning-overlay" id="warningOverlay">
+    <div>Действие заблокировано</div>
+    <div style="font-size:0.9rem; margin-top:0.8rem; color:#884444;">Инструменты разработчика обнаружены</div>
+  </div>
+
   <div class="card">
     <h1>
-      <span class="chip-icon">🪙</span> ФИШКИ <span class="chip-icon">🎰</span>
+      <span>♦</span> ФИШКИ <span>♥</span>
     </h1>
-    <div class="subtitle">
-      <span>♦</span> мгновенная покупка <span>♥</span>
-    </div>
+    <div class="subtitle">мгновенная покупка</div>
 
-    <!-- Бейдж сети TRON -->
     <div class="network-badge">
-      <i>⚡</i> ПЕРЕВОД ТОЛЬКО ЧЕРЕЗ СЕТЬ TRON (TRC20) <i>⚡</i>
+      Сеть TRON (TRC20)
     </div>
 
-    <!-- Шаг 1: выбор количества -->
     <div id="step-select" class="step">
       <div class="amount-selector">
         <div class="range-label">
-          <span>♦ 1 фишка</span>
-          <span>100 фишек ♥</span>
+          <span>1 фишка</span>
+          <span>100 фишек</span>
         </div>
-        <input type="range" id="chipsRange" min="1" max="100" value="25" step="1">
-        <div class="chips-number" id="chipsDisplay">25</div>
+        <div class="range-row">
+          <input type="range" id="chipsRange" min="1" max="100" value="25" step="1">
+          <div class="chips-value" id="chipsDisplay">25</div>
+        </div>
         <div class="price-box">
-          <span class="usdt-badge">₮</span>
+          <span class="usdt-badge">USDT</span>
           <span id="priceDisplay">25.00 USDT</span>
         </div>
-        <div class="fee-note">Цена за 1 фишку: 1.00 USDT (сеть TRC20)</div>
+        <div class="fee-note">1 фишка = 1.00 USDT</div>
       </div>
 
-      <button class="btn" id="generatePaymentBtn">💳 Перейти к оплате</button>
-      <div class="goodluck">
-        🍀 Желаем удачной игры! 🍀
-      </div>
+      <button class="btn" id="generatePaymentBtn">Перейти к оплате</button>
+      <div class="goodluck">Желаем удачной игры</div>
     </div>
 
-    <!-- Шаг 2: оплата (QR + ссылка) -->
     <div id="step-payment" class="step hidden">
       <div class="payment-section">
-        <h3 style="margin-bottom: 0.5rem; color: #ffcccc;">Оплата <span id="paymentChips">25</span> фишек</h3>
-        <div style="font-weight: bold; font-size: 1.5rem; margin: 0.2rem 0 0.8rem; color: #ffaa00;" id="paymentTotal">25.00 USDT</div>
+        <h3 style="margin-bottom: 0.3rem; color: #cc8888; font-size:1rem;">Оплата <span id="paymentChips">25</span> фишек</h3>
+        <div style="font-weight: 700; font-size: 1.2rem; margin: 0.2rem 0 0.6rem; color: #ff5555;" id="paymentTotal">25.00 USDT</div>
 
-        <div class="qr-container">
+        <div class="qr-wrapper" id="qrWrapper" onclick="document.getElementById('paymentLink').click()">
           <div id="qrcode"></div>
+          <div class="qr-overlay">Нажмите для оплаты</div>
+        </div>
+        <a href="https://link.trustwallet.com/send?asset=c195_tTVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ&address=TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ" target="_blank" style="display:none;" id="paymentLink"></a>
+
+        <div style="margin: 0.5rem 0 0.2rem; font-size:0.8rem; color:#774444;">или скопируйте адрес</div>
+        <div class="wallet-link" id="walletAddressDisplay">TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ</div>
+        <button class="copy-btn" id="copyWalletBtn">Скопировать адрес</button>
+
+        <div class="wallets-grid">
+          <div class="wallets-title">Нет кошелька? Установите:</div>
+          <a href="https://trustwallet.com/download" target="_blank" class="btn btn-wallet">
+            Trust Wallet
+          </a>
+          <a href="https://www.tronlink.org/" target="_blank" class="btn btn-wallet">
+            TronLink
+          </a>
+          <a href="https://klever.io/download" target="_blank" class="btn btn-wallet">
+            Klever Wallet
+          </a>
         </div>
 
-        <div style="margin: 0.8rem 0 0.2rem; font-size:0.9rem;">👇 или прямая ссылка на кошелёк</div>
-        <div class="wallet-link" id="walletAddressDisplay">TXuPw...адрес</div>
-        <button class="copy-btn" id="copyWalletBtn">📋 Скопировать адрес</button>
-
-        <button class="btn" id="confirmPaymentBtn" style="background: #2e7d32; background: linear-gradient(135deg, #2e7d32, #1b5e20);">
-          ✅ Я оплатил(а)
+        <button class="btn btn-success" id="confirmPaymentBtn">
+          Я оплатил
         </button>
-        <p style="font-size:0.75rem; margin-top:0.6rem; color:#cc9999;">После нажатия фишки придут в течение 5 минут</p>
+        <p style="font-size:0.7rem; margin-top:0.4rem; color:#552222;">Фишки придут в течение 5 минут</p>
       </div>
-      <button class="copy-btn" id="backToSelectBtn" style="margin-top:1.2rem;">← Изменить количество</button>
-      <div class="goodluck">♠️ Пусть фортуна будет на твоей стороне ♥️</div>
+      <button class="btn btn-secondary" id="backToSelectBtn" style="margin-top:0.8rem;">Изменить количество</button>
+      <div class="goodluck">Пусть фортуна будет на твоей стороне</div>
     </div>
 
-    <!-- Шаг 3: успех -->
     <div id="step-success" class="step hidden">
       <div class="success-message">
-        🎉 Спасибо за оплату! <br> Фишки придут в течение 5 минут.
+        Спасибо за оплату<br>Фишки придут в течение 5 минут
       </div>
-      <p style="margin-top:1.2rem; color:#f9a8a8;">Проверьте баланс в игре.</p>
-      <button class="copy-btn" id="newPurchaseBtn" style="margin-top:1.8rem;">🔄 Купить ещё</button>
-      <div class="goodluck">🍀 Желаем крупных выигрышей! 🍀</div>
+      <p style="margin-top:0.8rem; color:#774444;">Проверьте баланс в игре</p>
+      <button class="btn btn-secondary" id="newPurchaseBtn" style="margin-top:1.2rem;">Купить ещё</button>
+      <div class="goodluck">Желаем крупных выигрышей</div>
     </div>
   </div>
 
   <script>
     (function() {
-      // ---------- НАСТРОЙКИ (замените на свои) ----------
-      // Вставьте ваш USDT (TRC20) адрес кошелька
-      const CRYPTO_WALLET_ADDRESS = "TXuPwz1hTjVqLqkNEkYmSn7M4YGJkXPh8S"; // пример TRC20 адреса
-      // Цена за 1 фишку в USDT
-      const PRICE_PER_CHIP = 1.0; // 1 USDT за фишку
-      const CURRENCY = "USDT";
-      const NETWORK = "TRC20 (TRON)";
-      // ------------------------------------------------
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
 
-      // DOM элементы
+      const warningOverlay = document.getElementById('warningOverlay');
+      let devToolsDetected = false;
+
+      function detectDevTools() {
+        const threshold = 160;
+        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
+        if (widthThreshold || heightThreshold) {
+          if (!devToolsDetected) {
+            devToolsDetected = true;
+            warningOverlay.classList.add('active');
+            document.body.style.pointerEvents = 'none';
+            warningOverlay.style.pointerEvents = 'auto';
+          }
+        } else {
+          if (devToolsDetected) {
+            devToolsDetected = false;
+            warningOverlay.classList.remove('active');
+            document.body.style.pointerEvents = 'auto';
+          }
+        }
+      }
+
+      setInterval(detectDevTools, 1000);
+
+      const startTime = new Date();
+      debugger;
+      const endTime = new Date();
+      if (endTime - startTime > 100) {
+        warningOverlay.classList.add('active');
+        document.body.style.pointerEvents = 'none';
+        warningOverlay.style.pointerEvents = 'auto';
+      }
+
+      function sanitizeInput(input) {
+        if (typeof input !== 'string') return '';
+        return input.replace(/[<>'"]/g, '');
+      }
+
+      window.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        params.forEach(function(value, key) {
+          const cleanValue = sanitizeInput(value);
+          if (value !== cleanValue) {
+            window.history.replaceState({}, '', window.location.pathname);
+          }
+        });
+      });
+
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
+                if (node.src && !node.src.includes('cdnjs.cloudflare.com')) {
+                  node.remove();
+                  warningOverlay.classList.add('active');
+                }
+              }
+            });
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+
+      let paymentConfirmed = false;
+      let paymentSessionId = null;
+
+      function generateSessionId() {
+        return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+
+      const CRYPTO_WALLET_ADDRESS = "TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ";
+      const PRICE_PER_CHIP = 1.0;
+      const CURRENCY = "USDT";
+
       const stepSelect = document.getElementById('step-select');
       const stepPayment = document.getElementById('step-payment');
       const stepSuccess = document.getElementById('step-success');
@@ -463,17 +590,16 @@
       const paymentChipsSpan = document.getElementById('paymentChips');
       const paymentTotalSpan = document.getElementById('paymentTotal');
       const walletAddressDisplay = document.getElementById('walletAddressDisplay');
+      const paymentLink = document.getElementById('paymentLink');
 
       let currentChips = 25;
 
       function updatePriceDisplay(chips) {
         const total = (chips * PRICE_PER_CHIP).toFixed(2);
-        priceDisplay.textContent = `${total} ${CURRENCY}`;
+        priceDisplay.textContent = total + ' ' + CURRENCY;
       }
 
-      // Формируем ссылку для QR (для USDT TRC20 обычно просто адрес)
       function getPaymentLink() {
-        // Для TRON кошельков можно использовать прямой адрес
         return CRYPTO_WALLET_ADDRESS;
       }
 
@@ -490,27 +616,36 @@
 
       function generateQRCode() {
         clearQR();
-        const paymentData = getPaymentLink();
+        const paymentData = "tron:" + CRYPTO_WALLET_ADDRESS + "?contract=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
         if (window.QRCode) {
           new QRCode(document.getElementById("qrcode"), {
             text: paymentData,
-            width: 180,
-            height: 180,
-            colorDark: "#1a0000",
+            width: 160,
+            height: 160,
+            colorDark: "#0a0000",
             colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
+            correctLevel: QRCode.CorrectLevel.M
           });
-        } else {
-          document.getElementById("qrcode").innerHTML =
-            '<p style="color:black;">Ошибка загрузки QR</p>';
         }
       }
 
+      function updatePaymentLink(chips) {
+        const total = (chips * PRICE_PER_CHIP).toFixed(2);
+        const trustWalletLink = "https://link.trustwallet.com/send?asset=c195_tTVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ&address=" + CRYPTO_WALLET_ADDRESS + "&amount=" + total;
+        paymentLink.href = trustWalletLink;
+      }
+
       function showPaymentStep(chips) {
+        paymentSessionId = generateSessionId();
+        paymentConfirmed = false;
+        confirmPaymentBtn.disabled = false;
+        confirmPaymentBtn.textContent = 'Я оплатил';
+
         paymentChipsSpan.textContent = chips;
         const total = (chips * PRICE_PER_CHIP).toFixed(2);
-        paymentTotalSpan.textContent = `${total} ${CURRENCY}`;
+        paymentTotalSpan.textContent = total + ' ' + CURRENCY;
         walletAddressDisplay.textContent = getReadableAddress();
+        updatePaymentLink(chips);
         generateQRCode();
 
         stepSelect.classList.add('hidden');
@@ -536,7 +671,6 @@
         updatePriceDisplay(currentChips);
       });
 
-      // Инициализация
       chipsDisplay.textContent = currentChips;
       updatePriceDisplay(currentChips);
 
@@ -549,26 +683,53 @@
       });
 
       confirmPaymentBtn.addEventListener('click', function() {
-        showSuccessStep();
+        if (paymentConfirmed) return;
+
+        if (!paymentSessionId) {
+          alert('Ошибка сессии. Вернитесь к выбору фишек.');
+          return;
+        }
+
+        paymentConfirmed = true;
+        confirmPaymentBtn.disabled = true;
+        confirmPaymentBtn.textContent = 'Обработка...';
+
+        setTimeout(function() {
+          showSuccessStep();
+        }, 300);
       });
 
       newPurchaseBtn.addEventListener('click', function() {
+        paymentConfirmed = false;
+        paymentSessionId = null;
         showSelectStep();
         updatePriceDisplay(currentChips);
       });
 
       copyWalletBtn.addEventListener('click', function() {
         const address = getReadableAddress();
-        navigator.clipboard.writeText(address).then(() => {
+        navigator.clipboard.writeText(address).then(function() {
           const original = copyWalletBtn.textContent;
-          copyWalletBtn.textContent = '✅ Скопировано!';
-          setTimeout(() => {
+          copyWalletBtn.textContent = 'Скопировано';
+          setTimeout(function() {
             copyWalletBtn.textContent = original;
-          }, 1800);
-        }).catch(() => {
+          }, 1500);
+        }).catch(function() {
           alert('Скопируйте вручную: ' + address);
         });
       });
+
+      document.addEventListener('keydown', function(e) {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
     })();
   </script>
 </body>
