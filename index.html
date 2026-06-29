@@ -237,6 +237,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      text-decoration: none;
     }
 
     .btn-wallet:hover {
@@ -429,9 +430,9 @@
         </div>
         <div class="price-box">
           <span class="usdt-badge">USDT</span>
-          <span id="priceDisplay">25.00 USDT</span>
+          <span id="priceDisplay">50.00 USDT</span>
         </div>
-        <div class="fee-note">1 фишка = 1.00 USDT</div>
+        <div class="fee-note">1 фишка = 2.00 USDT</div>
       </div>
 
       <button class="btn" id="generatePaymentBtn">Перейти к оплате</button>
@@ -441,7 +442,7 @@
     <div id="step-payment" class="step hidden">
       <div class="payment-section">
         <h3 style="margin-bottom: 0.3rem; color: #cc8888; font-size:1rem;">Оплата <span id="paymentChips">25</span> фишек</h3>
-        <div style="font-weight: 700; font-size: 1.2rem; margin: 0.2rem 0 0.6rem; color: #ff5555;" id="paymentTotal">25.00 USDT</div>
+        <div style="font-weight: 700; font-size: 1.2rem; margin: 0.2rem 0 0.6rem; color: #ff5555;" id="paymentTotal">50.00 USDT</div>
 
         <div class="qr-wrapper" id="qrWrapper" onclick="document.getElementById('paymentLink').click()">
           <div id="qrcode"></div>
@@ -570,7 +571,7 @@
       }
 
       const CRYPTO_WALLET_ADDRESS = "TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ";
-      const PRICE_PER_CHIP = 1.0;
+      const PRICE_PER_CHIP = 2.0;
       const CURRENCY = "USDT";
 
       const stepSelect = document.getElementById('step-select');
