@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
   <title>Купить фишки | TRON USDT</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://api.telegram.org; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:;">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
   </script>
   <style>
@@ -79,6 +79,41 @@
       letter-spacing: 0.3px;
       font-size: 0.8rem;
       text-transform: uppercase;
+    }
+
+    .input-group {
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: #994444;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #0a0101;
+      border: 1px solid #2a0808;
+      border-radius: 0.6rem;
+      color: #ff7777;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .input-group input:focus {
+      border: 1px solid #cc3333;
+    }
+
+    .input-group input::placeholder {
+      color: #552222;
     }
 
     .amount-selector {
@@ -349,6 +384,77 @@
       letter-spacing: 1px;
     }
 
+    .amount-warning {
+      background: #1a0808;
+      border: 1px solid #cc3333;
+      border-radius: 0.8rem;
+      padding: 0.8rem 1rem;
+      margin: 0.8rem 0;
+      color: #ff7777;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .amount-warning .big-amount {
+      font-size: 1.4rem;
+      color: #ff4444;
+      display: block;
+      margin: 0.3rem 0;
+    }
+
+    .code-box {
+      background: #0d0505;
+      border: 2px solid #cc3333;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin: 1rem 0;
+      animation: fadeSlide 0.4s ease;
+    }
+
+    .code-label {
+      font-size: 0.8rem;
+      color: #994444;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .code-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ff4444;
+      letter-spacing: 3px;
+      font-family: monospace;
+      background: #140202;
+      padding: 0.6rem 1rem;
+      border-radius: 0.6rem;
+      display: inline-block;
+      margin: 0.3rem 0;
+      border: 1px dashed #cc3333;
+    }
+
+    .code-info {
+      font-size: 0.75rem;
+      color: #774444;
+      margin-top: 0.5rem;
+    }
+
+    .timer-box {
+      background: #1a0808;
+      border: 1px solid #3a1010;
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      margin: 0.8rem 0;
+      font-size: 0.85rem;
+      color: #cc8888;
+    }
+
+    .timer-value {
+      font-weight: 700;
+      color: #ff7777;
+      font-size: 1.1rem;
+    }
+
     .success-message {
       background: #0d0505;
       color: #cc5555;
@@ -399,6 +505,17 @@
     .warning-overlay.active {
       display: flex;
     }
+
+    .error-text {
+      color: #ff4444;
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      display: none;
+    }
+
+    .error-text.show {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -419,6 +536,12 @@
     </div>
 
     <div id="step-select" class="step">
+      <div class="input-group">
+        <label>Ваш игровой ID</label>
+        <input type="text" id="playerIdInput" placeholder="Введите ваш ID в игре" maxlength="30">
+        <div class="error-text" id="playerIdError">Введите игровой ID</div>
+      </div>
+
       <div class="amount-selector">
         <div class="range-label">
           <span>1 фишка</span>
@@ -444,13 +567,21 @@
         <h3 style="margin-bottom: 0.3rem; color: #cc8888; font-size:1rem;">Оплата <span id="paymentChips">25</span> фишек</h3>
         <div style="font-weight: 700; font-size: 1.2rem; margin: 0.2rem 0 0.6rem; color: #ff5555;" id="paymentTotal">50.00 USDT</div>
 
+        <div style="font-size:0.8rem; color:#994444;">Игрок: <span id="paymentPlayerId" style="color:#ff7777;">-</span></div>
+
+        <div class="amount-warning">
+          ВНИМАНИЕ: введите в кошельке сумму
+          <span class="big-amount" id="amountToSend">50.00 USDT</span>
+          Сеть TRON (TRC20)
+        </div>
+
         <div class="qr-wrapper" id="qrWrapper" onclick="document.getElementById('paymentLink').click()">
           <div id="qrcode"></div>
           <div class="qr-overlay">Нажмите для оплаты</div>
         </div>
         <a href="https://link.trustwallet.com/send?asset=c195_tTVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ&address=TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ" target="_blank" style="display:none;" id="paymentLink"></a>
 
-        <div style="margin: 0.5rem 0 0.2rem; font-size:0.8rem; color:#774444;">или скопируйте адрес</div>
+        <div style="margin: 0.5rem 0 0.2rem; font-size:0.8rem; color:#774444;">Адрес кошелька:</div>
         <div class="wallet-link" id="walletAddressDisplay">TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ</div>
         <button class="copy-btn" id="copyWalletBtn">Скопировать адрес</button>
 
@@ -468,20 +599,34 @@
         </div>
 
         <button class="btn btn-success" id="confirmPaymentBtn">
-          Я оплатил
+          Я оплатил, получить код
         </button>
-        <p style="font-size:0.7rem; margin-top:0.4rem; color:#552222;">Фишки придут в течение 5 минут</p>
+        <p style="font-size:0.7rem; margin-top:0.4rem; color:#552222;">После проверки платежа фишки придут в течение 5 минут</p>
       </div>
       <button class="btn btn-secondary" id="backToSelectBtn" style="margin-top:0.8rem;">Изменить количество</button>
       <div class="goodluck">Пусть фортуна будет на твоей стороне</div>
     </div>
 
-    <div id="step-success" class="step hidden">
-      <div class="success-message">
-        Спасибо за оплату<br>Фишки придут в течение 5 минут
+    <div id="step-code" class="step hidden">
+      <div class="code-box">
+        <div class="code-label">Ваш уникальный код покупки</div>
+        <div class="code-value" id="uniqueCode">XXXX-XXXX-XXXX</div>
+        <div class="code-info">
+          Сохраните этот код<br>Он понадобится для получения фишек
+        </div>
       </div>
-      <p style="margin-top:0.8rem; color:#774444;">Проверьте баланс в игре</p>
-      <button class="btn btn-secondary" id="newPurchaseBtn" style="margin-top:1.2rem;">Купить ещё</button>
+
+      <div class="timer-box">
+        Ожидайте подтверждения оплаты<br>
+        Обычно это занимает до <span class="timer-value">5 минут</span>
+      </div>
+
+      <div class="amount-warning" style="font-size:0.8rem;">
+        Отправьте <span id="codeAmount">50.00 USDT</span> на кошелёк<br>
+        и сообщите этот код администратору
+      </div>
+
+      <button class="btn btn-secondary" id="backToShopBtn" style="margin-top:1rem;">Вернуться к покупкам</button>
       <div class="goodluck">Желаем крупных выигрышей</div>
     </div>
   </div>
@@ -565,9 +710,52 @@
 
       let paymentConfirmed = false;
       let paymentSessionId = null;
+      let currentUniqueCode = null;
+      let currentPlayerId = '';
+
+      const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN";
+      const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID";
 
       function generateSessionId() {
         return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+
+      function generateUniqueCode() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let code = '';
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            code += chars.charAt(Math.floor(Math.random() * chars.length));
+          }
+          if (i < 3) code += '-';
+        }
+        return code;
+      }
+
+      function sendToTelegram(playerId, chips, total, code) {
+        const message = "🛒 НОВАЯ ПОКУПКА\n\n" +
+          "👤 ID игрока: " + playerId + "\n" +
+          "🎰 Фишек: " + chips + " шт\n" +
+          "💰 Сумма: " + total + " USDT\n" +
+          "🔑 Код: " + code + "\n" +
+          "📅 Время: " + new Date().toLocaleString('ru-RU') + "\n\n" +
+          "Проверьте поступление USDT на кошелёк";
+
+        const telegramUrl = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
+
+        fetch(telegramUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        }).catch(function(error) {
+          console.log('Telegram send error:', error);
+        });
       }
 
       const CRYPTO_WALLET_ADDRESS = "TVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ";
@@ -576,22 +764,28 @@
 
       const stepSelect = document.getElementById('step-select');
       const stepPayment = document.getElementById('step-payment');
-      const stepSuccess = document.getElementById('step-success');
+      const stepCode = document.getElementById('step-code');
 
       const chipsRange = document.getElementById('chipsRange');
       const chipsDisplay = document.getElementById('chipsDisplay');
       const priceDisplay = document.getElementById('priceDisplay');
+      const playerIdInput = document.getElementById('playerIdInput');
+      const playerIdError = document.getElementById('playerIdError');
 
       const generateBtn = document.getElementById('generatePaymentBtn');
       const backBtn = document.getElementById('backToSelectBtn');
       const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
-      const newPurchaseBtn = document.getElementById('newPurchaseBtn');
+      const backToShopBtn = document.getElementById('backToShopBtn');
       const copyWalletBtn = document.getElementById('copyWalletBtn');
 
       const paymentChipsSpan = document.getElementById('paymentChips');
       const paymentTotalSpan = document.getElementById('paymentTotal');
+      const paymentPlayerId = document.getElementById('paymentPlayerId');
       const walletAddressDisplay = document.getElementById('walletAddressDisplay');
       const paymentLink = document.getElementById('paymentLink');
+      const amountToSend = document.getElementById('amountToSend');
+      const uniqueCodeDisplay = document.getElementById('uniqueCode');
+      const codeAmount = document.getElementById('codeAmount');
 
       let currentChips = 25;
 
@@ -631,39 +825,48 @@
       }
 
       function updatePaymentLink(chips) {
-        const total = (chips * PRICE_PER_CHIP).toFixed(2);
-        const trustWalletLink = "https://link.trustwallet.com/send?asset=c195_tTVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ&address=" + CRYPTO_WALLET_ADDRESS + "&amount=" + total;
+        const trustWalletLink = "https://link.trustwallet.com/send?asset=c195_tTVaretUsBJNn1pdXtHVwbLzLzcwMMXVhuZ&address=" + CRYPTO_WALLET_ADDRESS;
         paymentLink.href = trustWalletLink;
       }
 
-      function showPaymentStep(chips) {
+      function showPaymentStep(chips, playerId) {
         paymentSessionId = generateSessionId();
         paymentConfirmed = false;
+        currentPlayerId = playerId;
         confirmPaymentBtn.disabled = false;
-        confirmPaymentBtn.textContent = 'Я оплатил';
+        confirmPaymentBtn.textContent = 'Я оплатил, получить код';
 
         paymentChipsSpan.textContent = chips;
+        paymentPlayerId.textContent = playerId;
         const total = (chips * PRICE_PER_CHIP).toFixed(2);
         paymentTotalSpan.textContent = total + ' ' + CURRENCY;
+        amountToSend.textContent = total + ' ' + CURRENCY;
         walletAddressDisplay.textContent = getReadableAddress();
         updatePaymentLink(chips);
         generateQRCode();
 
         stepSelect.classList.add('hidden');
-        stepSuccess.classList.add('hidden');
+        stepCode.classList.add('hidden');
         stepPayment.classList.remove('hidden');
       }
 
       function showSelectStep() {
         stepPayment.classList.add('hidden');
-        stepSuccess.classList.add('hidden');
+        stepCode.classList.add('hidden');
         stepSelect.classList.remove('hidden');
       }
 
-      function showSuccessStep() {
+      function showCodeStep(chips) {
+        currentUniqueCode = generateUniqueCode();
+        uniqueCodeDisplay.textContent = currentUniqueCode;
+        const total = (chips * PRICE_PER_CHIP).toFixed(2);
+        codeAmount.textContent = total + ' ' + CURRENCY;
+
+        sendToTelegram(currentPlayerId, chips, total, currentUniqueCode);
+
         stepPayment.classList.add('hidden');
         stepSelect.classList.add('hidden');
-        stepSuccess.classList.remove('hidden');
+        stepCode.classList.remove('hidden');
       }
 
       chipsRange.addEventListener('input', function(e) {
@@ -676,7 +879,22 @@
       updatePriceDisplay(currentChips);
 
       generateBtn.addEventListener('click', function() {
-        showPaymentStep(currentChips);
+        const playerId = playerIdInput.value.trim();
+
+        if (!playerId) {
+          playerIdError.classList.add('show');
+          playerIdInput.focus();
+          return;
+        }
+
+        playerIdError.classList.remove('show');
+        showPaymentStep(currentChips, playerId);
+      });
+
+      playerIdInput.addEventListener('input', function() {
+        if (playerIdInput.value.trim()) {
+          playerIdError.classList.remove('show');
+        }
       });
 
       backBtn.addEventListener('click', function() {
@@ -693,16 +911,17 @@
 
         paymentConfirmed = true;
         confirmPaymentBtn.disabled = true;
-        confirmPaymentBtn.textContent = 'Обработка...';
+        confirmPaymentBtn.textContent = 'Код сгенерирован';
 
-        setTimeout(function() {
-          showSuccessStep();
-        }, 300);
+        showCodeStep(currentChips);
       });
 
-      newPurchaseBtn.addEventListener('click', function() {
+      backToShopBtn.addEventListener('click', function() {
         paymentConfirmed = false;
         paymentSessionId = null;
+        currentUniqueCode = null;
+        currentPlayerId = '';
+        playerIdInput.value = '';
         showSelectStep();
         updatePriceDisplay(currentChips);
       });
